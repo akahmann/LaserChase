@@ -12,6 +12,7 @@ public class LaserChase extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		//create
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
 	}
