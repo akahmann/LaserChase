@@ -1,10 +1,9 @@
-package com.kahmann.game;
+package com.mygdx.game;
 
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.kahmann.game.LaserChase;
 
 public class AndroidLauncher extends AndroidApplication {
 	@Override
@@ -14,3 +13,5 @@ public class AndroidLauncher extends AndroidApplication {
 		initialize(new LaserChase(), config);
 	}
 }
+
+// Git THings again
