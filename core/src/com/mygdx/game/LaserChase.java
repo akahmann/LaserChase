@@ -1,4 +1,4 @@
-package com.kahmann.game;
+package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
