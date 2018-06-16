@@ -18,12 +18,16 @@ public class MenuState extends State {
 
     @Override
     public void handleInput() {
+        if(Gdx.input.justTouched()){
+            gsm.set(new PlayState(gsm));
+            dispose();
+        }
 
     }
 
     @Override
     public void update(float dt) {
-
+        handleInput();
     }
 
     @Override
@@ -32,5 +36,11 @@ public class MenuState extends State {
         sb.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         //sb.draw(playBtn, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         sb.end();
+    }
+
+    @Override
+    public void dispose() {
+        background.dispose();
+        //playBtn.dispose();
     }
 }
