@@ -17,7 +17,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.kahmann.game"
+        applicationId "com.mygdx.game"
         minSdkVersion 9
         targetSdkVersion 27
         versionCode 1
@@ -78,7 +78,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.kahmann.game/com.kahmann.game.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.mygdx.game/com.mygdx.game.AndroidLauncher'
 }
 
 // sets up the Android Eclipse project, using the old Ant based build.
