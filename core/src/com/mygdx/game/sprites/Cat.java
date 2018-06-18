@@ -14,7 +14,7 @@ public class Cat {
         velocity = new Vector3(0, 0, 0);
 
         // Put Cat picture path here in string
-        cat = new Texture("cat");
+        cat = new Texture("spr_cat.png");
 
     }
 
