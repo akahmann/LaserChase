@@ -51,4 +51,8 @@ public class Cat {
     public Vector3 getVelocity() {
         return velocity;
     }
+
+    public void teleport(Vector3 position){
+        this.position = position;
+    }
 }
