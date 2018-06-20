@@ -53,6 +53,10 @@ public class Cat {
     }
 
     public void teleport(Vector3 position){
-        this.position = position;
+        this.position.y = 2710 - position.y;
+        this.position.x = position.x;
+        //
+
+        System.out.println("++++++++++++++++++++" + position);
     }
 }
