@@ -58,7 +58,7 @@ public class Cat {
     }
 
     public void teleport(Vector3 position){
-        //this is a change to a cat class
+        //this is a change to a cat class x
         this.position.y = position.y;
         // 2710 is y when i click the bottom of the screen and the cat shows up top...
         // so this converts (0,2710) to be (0,0)...it would be clean to set to have screen scale
