@@ -23,9 +23,9 @@ public class PlayState extends State {
 
     @Override
     protected void handleInput() {
-        if(Gdx.input.justTouched()) {
+        if(Gdx.input.isTouched()) {
             Vector3 catPosition = new Vector3();
-            catPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            catPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
             cat.teleport(catPosition);
 
         }
