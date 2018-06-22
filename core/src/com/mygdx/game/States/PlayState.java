@@ -19,8 +19,8 @@ public class PlayState extends State {
         super(gsm);
         // Put cat picture path here!
         //bg = new Texture("LaserDot2.png");
-        cat = new Cat(300 ,1000);
-        laser = new Laser(100, 200);
+        cat = new Cat((int)(Gdx.graphics.getWidth() * .5) ,(int)(Gdx.graphics.getHeight() * .5));
+        laser = new Laser(0, 0);
         // Refer to FlappyBird Guide Video 5 @ 6min
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
@@ -29,9 +29,9 @@ public class PlayState extends State {
     @Override
     protected void handleInput() {
         if(Gdx.input.isTouched()) {
-            Vector3 catPosition = new Vector3();
-            catPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
-            cat.teleport(catPosition);
+            //Vector3 catPosition = new Vector3();
+            //catPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
+            //cat.teleport(catPosition);
             Vector3 laserPosition = new Vector3();
             laserPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
             laser.teleport(laserPosition);
@@ -53,8 +53,9 @@ public class PlayState extends State {
         //sb.setProjectionMatrix();
         sb.begin();
         //sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y);
-        sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y);
+        Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
+        sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
+        sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.end();
 
     }

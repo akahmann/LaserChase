@@ -1,5 +1,6 @@
 package com.mygdx.game.sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
@@ -8,6 +9,7 @@ public class Cat {
     private Vector3 position;
     private Vector3 velocity;
     private Animation catAnimation; //create an animation
+    int scale = (int)(Gdx.graphics.getWidth() * .15);
 
     private Texture cat;
 
@@ -39,6 +41,14 @@ public class Cat {
 
     public TextureRegion getCat() { //before returned texture, now returns textureRegion
         return catAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
+    }
+
+    public int getWidth() {
+        return scale;
+    }
+
+    public int getHeight() {
+        return scale;
     }
 
     public void setPosition(Vector3 position) {
