@@ -1,11 +1,13 @@
 package com.mygdx.game.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 
 public class Cat {
     private Vector3 position;
     private Vector3 velocity;
+    private Animation catAnimation; //create an animation
 
     private Texture cat;
 
@@ -15,11 +17,14 @@ public class Cat {
 
         // Put Cat picture path here in string
         cat = new Texture("spr_cat.png");
-
+        Texture texture = new Texture("spr_catRight_strip11.png"); //put animation in texture
+        catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
+        //bounds = new Rectangle(x, y, texture.getWidth() / 11, texture getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
 
     public void update(float dt){
         // velocity.add adds to velocity needs three parameters
+        catAnimation.update(dt);
         velocity.add(0, 0, 0);
         velocity.scl(dt);
         position.add(0, velocity.y, 0);
@@ -32,8 +37,8 @@ public class Cat {
         return position;
     }
 
-    public Texture getCat() {
-        return cat;
+    public TextureRegion getCat() { //before returned texture, now returns textureRegion
+        return catAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
     }
 
     public void setPosition(Vector3 position) {
