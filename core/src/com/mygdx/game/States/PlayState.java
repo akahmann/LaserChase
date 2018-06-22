@@ -15,10 +15,9 @@ public class PlayState extends State {
     public PlayState(GameStateManager gsm) {
         super(gsm);
         // Put cat picture path here!
-        cat = new Cat(50 ,0);
+        cat = new Cat(50 ,-50);
         // Refer to FlappyBird Guide Video 5 @ 6min
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-
 
     }
 

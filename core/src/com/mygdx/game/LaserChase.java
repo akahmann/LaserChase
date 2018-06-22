@@ -25,6 +25,7 @@ public class LaserChase extends ApplicationAdapter {
 		//img = new Texture("badlogic.jpg");
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		gsm.push(new MenuState(gsm));
+
 	}
 
 	@Override
