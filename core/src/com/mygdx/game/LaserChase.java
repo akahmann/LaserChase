@@ -16,7 +16,7 @@ public class LaserChase extends ApplicationAdapter {
 	private GameStateManager gsm;
 	private SpriteBatch batch;
 	//Texture img;
-	
+
 	@Override
 	public void create () {
 		//create
