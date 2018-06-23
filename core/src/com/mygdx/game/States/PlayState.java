@@ -42,7 +42,10 @@ public class PlayState extends State {
 
     @Override
     public void update(float dt) {
+        //System.out.println("HERE");
         handleInput();
+        cat.accelerate();
+        cat.setChaseVelocity(laser.getPosition());
         cat.update(dt);
         laser.update(dt);
 

@@ -4,10 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 public class Cat {
     private Vector3 position;
-    private Vector3 velocity;
+    private Vector3 chaseVelocity;//according to laser pointer
+    private Vector3 finalVelocity;//according to acceleration and past velocities
+    private Boolean alive;
+    private double maxSpeed = 7;
     private Animation catAnimation; //create an animation
     int scale = (int)(Gdx.graphics.getWidth() * .15);
 
@@ -15,7 +19,10 @@ public class Cat {
 
     public Cat(int x, int y){
         position = new Vector3(x, y, 0);
-        velocity = new Vector3(0, 0, 0);
+        chaseVelocity = new Vector3(0, 0, 0);
+        finalVelocity = new Vector3(0, 0, 0);
+        alive = true;
+
 
         // Put Cat picture path here in string
         cat = new Texture("spr_cat.png");
@@ -27,12 +34,18 @@ public class Cat {
     public void update(float dt){
         // velocity.add adds to velocity needs three parameters
         catAnimation.update(dt);
-        velocity.add(0, 0, 0);
-        velocity.scl(dt);
-        position.add(0, velocity.y, 0);
+        //velocity.add(0, 0, 0);
+       // velocity.scl(dt);
+       // position.add(0, velocity.y, 0);
+
+        //current position + velocity
+        position.x = position.x + finalVelocity.x;
+        position.y = position.y + finalVelocity.y;
+        //System.out.println(position.x);
+        //System.out.println(position.y);
 
         // Reverses what was scaled previously
-        velocity.scl(1/dt);
+       // velocity.scl(1/dt);
     }
 
     public Vector3 getPosition() {
@@ -55,26 +68,59 @@ public class Cat {
         this.position = position;
     }
 
-    public void setVelocity(Vector3 velocity) {
-        this.velocity = velocity;
-    }
+
 
     public void setCat(Texture cat) {
         this.cat = cat;
     }
 
-    public Vector3 getVelocity() {
-        return velocity;
-    }
 
     public void teleport(Vector3 position){
-        //this is a change to a cat class x
         this.position.y = position.y;
-        // 2710 is y when i click the bottom of the screen and the cat shows up top...
-        // so this converts (0,2710) to be (0,0)...it would be clean to set to have screen scale
         this.position.x = position.x;
-        //
 
-        System.out.println("++++++++++++++++++++" + this.position);
     }
+
+    public void setChaseVelocity(Vector3 chasePoint){
+
+        Vector3 chaseDirection = new Vector3(0,0,0);
+        //Final - initial.................
+        chaseDirection.x = chasePoint.x - position.x;
+        chaseDirection.y = chasePoint.y - position.y;
+
+        //remember direction..............
+        Boolean xPositive = true;
+        Boolean yPositive = true;
+        if(chaseDirection.x < 0){
+            xPositive = false;
+            chaseDirection.x = chaseDirection.x * -1;
+        }
+        if(chaseDirection.y < 0){
+            yPositive = false;
+            chaseDirection.y = chaseDirection.y * -1;
+        }
+
+        //get chase angle... in radians
+        double angle = 0;
+        angle = Math.atan(chaseDirection.y / chaseDirection.x);
+
+        //get new chase velocity with the angle and hypotenuse(max speed)
+        chaseVelocity.x =  (float)(maxSpeed * Math.cos(angle));
+        chaseVelocity.y =  (float)(maxSpeed * Math.sin(angle));
+
+        //assign direction
+        if (!xPositive){
+            chaseVelocity.x = chaseVelocity.x * -1;
+        }
+        if (!yPositive){
+            chaseVelocity.y = chaseVelocity.y * -1;
+        }
+    }
+
+    public void accelerate(){
+                                   //how straight           //how much the cat slides
+        finalVelocity.x = (float)((chaseVelocity.x * .4) + (finalVelocity.x * .9));
+        finalVelocity.y = (float)((chaseVelocity.y * .4) + (finalVelocity.y * .9));
+    }
+
 }
