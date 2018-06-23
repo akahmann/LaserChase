@@ -60,4 +60,8 @@ public class Laser {
 
         System.out.println("++++++++++++++++++++" + this.position);
     }
+
+    public void dispose(){
+        laser.dispose();
+    }
 }

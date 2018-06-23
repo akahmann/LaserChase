@@ -77,4 +77,8 @@ public class Cat {
 
         System.out.println("++++++++++++++++++++" + this.position);
     }
+
+    public void dispose() {
+        cat.dispose();
+    }
 }
