@@ -8,7 +8,6 @@ import com.mygdx.game.sprites.Cat;
 import com.mygdx.game.sprites.Laser;
 
 import javax.xml.soap.Text;
-// Next time start at Video 6 and 4:30 :D
 public class PlayState extends State {
 
     private Cat cat;
@@ -17,11 +16,8 @@ public class PlayState extends State {
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
-        // Put cat picture path here!
-        //bg = new Texture("LaserDot2.png");
         cat = new Cat((int)(Gdx.graphics.getWidth() * .5) ,(int)(Gdx.graphics.getHeight() * .5));
         laser = new Laser(0, 0);
-        // Refer to FlappyBird Guide Video 5 @ 6min
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
     }
@@ -65,6 +61,9 @@ public class PlayState extends State {
 
     @Override
     public void dispose() {
+        bg.dispose();
+        cat.dispose();
+        laser.dispose();
 
     }
 }
