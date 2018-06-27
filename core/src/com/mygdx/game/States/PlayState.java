@@ -62,7 +62,7 @@ public class PlayState extends State {
     @Override
     public void dispose() {
         bg.dispose();
-        cat.dispose();
+        //cat.dispose();
         laser.dispose();
 
     }
