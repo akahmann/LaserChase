@@ -7,11 +7,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.sprites.Cat;
 import com.mygdx.game.sprites.Dog;
 import com.mygdx.game.sprites.Laser;
+import com.mygdx.game.sprites.Mouse;
 
 import javax.xml.soap.Text;
 public class PlayState extends State {
 
     private Cat cat;
+    private Mouse mouse;
     private Dog dog;
     private Laser laser;
     private Texture bg;
@@ -20,6 +22,7 @@ public class PlayState extends State {
         super(gsm);
         cat = new Cat((int)(Gdx.graphics.getWidth() * .5) ,(int)(Gdx.graphics.getHeight() * .5));
         dog = new Dog((int)(Gdx.graphics.getWidth() * .25) ,(int)(Gdx.graphics.getHeight() * .25));
+        mouse = new Mouse((int)(Gdx.graphics.getWidth() * .75) ,(int)(Gdx.graphics.getHeight() * .75));
         laser = new Laser(0, 0);
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
 
@@ -50,6 +53,10 @@ public class PlayState extends State {
         dog.accelerate();
         dog.setChaseVelocity(cat.getPosition());
         dog.update(dt);
+
+        mouse.accelerate();
+        mouse.setChaseVelocity(cat.getPosition());
+        mouse.update(dt);
         laser.update(dt);
 
     }
@@ -62,6 +69,7 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
         sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
         sb.draw(dog.getDog(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
+        sb.draw(mouse.getMouse(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.end();
 
