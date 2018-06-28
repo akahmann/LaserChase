@@ -1,5 +1,6 @@
 package com.mygdx.game.States;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,13 +20,14 @@ public class PlayState extends State {
     private Texture bg;
 
     public PlayState(GameStateManager gsm) {
+
         super(gsm);
         cat = new Cat((int)(Gdx.graphics.getWidth() * .5) ,(int)(Gdx.graphics.getHeight() * .5));
         dog = new Dog((int)(Gdx.graphics.getWidth() * .25) ,(int)(Gdx.graphics.getHeight() * .25));
         mouse = new Mouse((int)(Gdx.graphics.getWidth() * .75) ,(int)(Gdx.graphics.getHeight() * .75));
         laser = new Laser(0, 0);
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-
+        Gdx.app.setLogLevel(Application.LOG_INFO);
     }
 
     @Override

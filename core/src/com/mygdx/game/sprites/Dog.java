@@ -4,9 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
+
+
 
 public class Dog {
+    private static final String TAG = "Dog.java";
     private Vector3 position;
     private Vector3 chaseVelocity;//according to laser pointer
     private Vector3 finalVelocity;//according to acceleration and past velocities
@@ -22,6 +25,7 @@ public class Dog {
         chaseVelocity = new Vector3(0, 0, 0);
         finalVelocity = new Vector3(0, 0, 0);
         alive = true;
+        Gdx.app.log(TAG, "dog is created");
 
 
         // Put Dog picture path here in string
@@ -121,6 +125,11 @@ public class Dog {
         //how straight           //how much the dog slides
         finalVelocity.x = (float)((chaseVelocity.x * .3) + (finalVelocity.x * .95));
         finalVelocity.y = (float)((chaseVelocity.y * .3) + (finalVelocity.y * .95));
+    }
+
+    public void kill(){
+        alive = false;
+        Gdx.app.log(TAG, "dog is dead");
     }
 
 }

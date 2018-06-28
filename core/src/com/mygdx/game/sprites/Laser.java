@@ -58,7 +58,7 @@ public class Laser {
         this.position.y = position.y;
         this.position.x = position.x;
 
-        System.out.println("++++++++++++++++++++" + this.position);
+       // System.out.println("++++++++++++++++++++" + this.position);
     }
 
     public void dispose(){

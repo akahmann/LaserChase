@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
-import com.sun.org.apache.xpath.internal.operations.Bool;
+
 
 public class Mouse {
     private Vector3 position;
@@ -84,9 +84,18 @@ public class Mouse {
     public void setChaseVelocity(Vector3 chasePoint){
 
         Vector3 chaseDirection = new Vector3(0,0,0);
-        //Final - initial.................
-        chaseDirection.x = chasePoint.x - position.x;
-        chaseDirection.y = chasePoint.y - position.y;
+        //Final - initial.................-1 in order to run away
+        chaseDirection.x = (chasePoint.x - position.x);
+        chaseDirection.y = (chasePoint.y - position.y);
+
+        //find chase distance...
+        double distanceOfChaser = Math.sqrt(Math.pow(chaseDirection.x,2) + Math.pow(chaseDirection.y,2));
+       // System.out.println("DISTANCE TO CAT" + distanceOfChaser);
+        if (distanceOfChaser < 550)
+        {
+            chaseDirection.x *= -1;
+            chaseDirection.y *= -1;
+        }
 
         //remember direction..............
         Boolean xPositive = true;
@@ -115,12 +124,14 @@ public class Mouse {
         if (!yPositive){
             chaseVelocity.y = chaseVelocity.y * -1;
         }
+
     }
 
     public void accelerate(){
         //how straight           //how much the dog slides
-        finalVelocity.x = (float)((chaseVelocity.x * .3) + (finalVelocity.x * .95));
-        finalVelocity.y = (float)((chaseVelocity.y * .3) + (finalVelocity.y * .95));
+
+        finalVelocity.x = (float)((chaseVelocity.x * .33) + (finalVelocity.x * .90));
+        finalVelocity.y = (float)((chaseVelocity.y * .33) + (finalVelocity.y * .90));
     }
 
 }
