@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 
-
 public class Mouse {
     private Vector3 position;
     private Vector3 chaseVelocity;//according to laser pointer

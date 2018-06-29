@@ -3,6 +3,7 @@ package com.mygdx.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 
@@ -17,6 +18,7 @@ public class Dog {
     private double maxSpeed = 7;
     private Animation dogAnimation; //create an animation
     int scale = (int)(Gdx.graphics.getWidth() * .15);
+    private Rectangle bounds;
 
     private Texture dog;
 
@@ -32,8 +34,9 @@ public class Dog {
         dog = new Texture("spr_cat.png");
         Texture texture = new Texture("spr_catLeft_strip11.png"); //put animation in texture
         dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
-        //bounds = new Rectangle(x, y, texture.getWidth() / 11, texture getHeight()); //this is probably for collision detection. Divide by per frame (11)
+        bounds = new Rectangle(x, y, getWidth(), getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
+
 
     public void update(float dt){
         // velocity.add adds to velocity needs three parameters
@@ -50,6 +53,21 @@ public class Dog {
 
         // Reverses what was scaled previously
         // velocity.scl(1/dt);
+        bounds.setPosition(position.x, position.y);
+    }
+
+
+
+    public Rectangle getBounds(){
+        return bounds;
+    }
+
+    public boolean collides(Rectangle cat){
+
+        if(cat.overlaps(bounds)) {
+            System.out.println("Cat has been eaten!");
+        }
+        return cat.overlaps(bounds);
     }
 
     public Vector3 getPosition() {

@@ -3,6 +3,7 @@ package com.mygdx.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 
@@ -13,7 +14,8 @@ public class Cat {
     private Boolean alive;
     private double maxSpeed = 7;
     private Animation catAnimation; //create an animation
-    int scale = (int)(Gdx.graphics.getWidth() * .15);
+    int scale = (int)(Gdx.graphics.getWidth() * .10);
+    private Rectangle bounds;
 
     private Texture cat;
 
@@ -22,13 +24,13 @@ public class Cat {
         chaseVelocity = new Vector3(0, 0, 0);
         finalVelocity = new Vector3(0, 0, 0);
         alive = true;
-
+        bounds = new Rectangle(x, y, getWidth(), getHeight());
+        //System.out.println("This is the cats width" + getWidth());
 
         // Put Cat picture path here in string
         cat = new Texture("spr_cat.png");
         Texture texture = new Texture("spr_catRight_strip11.png"); //put animation in texture
         catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
-        //bounds = new Rectangle(x, y, texture.getWidth() / 11, texture getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
 
     public void update(float dt){
@@ -46,6 +48,26 @@ public class Cat {
 
         // Reverses what was scaled previously
        // velocity.scl(1/dt);
+       bounds.setPosition(position.x, position.y);
+    }
+
+    public void kill(){
+        alive = false;
+    }
+
+    public Boolean isAlive(){
+        return alive;
+    }
+    public Rectangle getBounds(){
+        return bounds;
+    }
+
+    public boolean collides(Rectangle laser) {
+
+        if (laser.overlaps(bounds)) {
+            System.out.println("Laser has been eaten!");
+        }
+        return laser.overlaps(bounds);
     }
 
     public Vector3 getPosition() {

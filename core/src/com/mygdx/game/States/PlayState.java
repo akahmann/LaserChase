@@ -61,6 +61,13 @@ public class PlayState extends State {
         mouse.update(dt);
         laser.update(dt);
 
+        if(dog.collides(cat.getBounds())){
+            cat.kill();
+
+        }
+
+        cat.collides(laser.getBounds());
+
     }
 
     @Override
@@ -69,7 +76,11 @@ public class PlayState extends State {
         sb.begin();
         //sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
-        sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
+
+        if(cat.isAlive()) {
+            sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
+        }
+
         sb.draw(dog.getDog(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
         sb.draw(mouse.getMouse(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
