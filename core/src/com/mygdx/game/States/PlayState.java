@@ -80,6 +80,9 @@ public class PlayState extends State {
         if(cat.isAlive()) {
             sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
         }
+        else{
+            gsm.set(new PlayState(gsm));
+        }
 
         sb.draw(dog.getDog(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .15));
         sb.draw(mouse.getMouse(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
