@@ -145,4 +145,6 @@ public class Cat {
         finalVelocity.y = (float)((chaseVelocity.y * .4) + (finalVelocity.y * .9));
     }
 
+    public void dispose(){ cat.dispose();}
+
 }

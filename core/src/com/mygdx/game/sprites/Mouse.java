@@ -133,4 +133,6 @@ public class Mouse {
         finalVelocity.y = (float)((chaseVelocity.y * .33) + (finalVelocity.y * .90));
     }
 
+    public void dispose(){ mouse.dispose();}
+
 }

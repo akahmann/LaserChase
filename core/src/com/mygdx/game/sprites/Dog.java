@@ -150,4 +150,5 @@ public class Dog {
         Gdx.app.log(TAG, "dog is dead");
     }
 
+    public void dispose(){ dog.dispose(); }
 }
