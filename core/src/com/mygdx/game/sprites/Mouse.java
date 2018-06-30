@@ -27,24 +27,16 @@ public class Mouse {
         mouse = new Texture("spr_cat.png");
         Texture texture = new Texture("spr_catLeft_strip11.png"); //put animation in texture
         mouseAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
-        //bounds = new Rectangle(x, y, texture.getWidth() / 11, texture getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
 
     public void update(float dt){
         // velocity.add adds to velocity needs three parameters
         mouseAnimation.update(dt);
-        //velocity.add(0, 0, 0);
-        // velocity.scl(dt);
-        // position.add(0, velocity.y, 0);
+
 
         //current position + velocity
         position.x = position.x + finalVelocity.x;
         position.y = position.y + finalVelocity.y;
-        //System.out.println(position.x);
-        //System.out.println(position.y);
-
-        // Reverses what was scaled previously
-        // velocity.scl(1/dt);
     }
 
     public Vector3 getPosition() {
@@ -66,8 +58,6 @@ public class Mouse {
     public void setPosition(Vector3 position) {
         this.position = position;
     }
-
-
 
     public void setMouse(Texture mouse) {
         this.mouse = mouse;

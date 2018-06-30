@@ -41,18 +41,11 @@ public class Dog {
     public void update(float dt){
         // velocity.add adds to velocity needs three parameters
         dogAnimation.update(dt);
-        //velocity.add(0, 0, 0);
-        // velocity.scl(dt);
-        // position.add(0, velocity.y, 0);
+
 
         //current position + velocity
         position.x = position.x + finalVelocity.x;
         position.y = position.y + finalVelocity.y;
-        //System.out.println(position.x);
-        //System.out.println(position.y);
-
-        // Reverses what was scaled previously
-        // velocity.scl(1/dt);
         bounds.setPosition(position.x, position.y);
     }
 

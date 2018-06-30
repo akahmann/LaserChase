@@ -33,9 +33,6 @@ public class PlayState extends State {
     @Override
     protected void handleInput() {
         if(Gdx.input.isTouched()) {
-            //Vector3 catPosition = new Vector3();
-            //catPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
-            //cat.teleport(catPosition);
             Vector3 laserPosition = new Vector3();
             laserPosition.set(Gdx.input.getX(), Gdx.graphics.getHeight() -  Gdx.input.getY(), 0);
             laser.teleport(laserPosition);
@@ -90,6 +87,7 @@ public class PlayState extends State {
         sb.end();
 
     }
+
 
     @Override
     public void dispose() {
