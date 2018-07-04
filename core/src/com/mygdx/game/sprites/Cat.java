@@ -6,12 +6,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
+import javax.swing.text.StyledEditorKit;
+
 
 public class Cat {
     private Vector3 position;
     private Vector3 chaseVelocity;//according to laser pointer
     private Vector3 finalVelocity;//according to acceleration and past velocities
     private Boolean alive;
+    boolean animateRight;
+    boolean animateLeft;
+    boolean animateUp;
+    boolean animateDown;
     private double maxSpeed = 7;
     private Animation catAnimation; //create an animation
     int scale = (int)(Gdx.graphics.getWidth() * .10);
@@ -26,29 +32,25 @@ public class Cat {
         alive = true;
         bounds = new Rectangle(x, y, getWidth(), getHeight());
         //System.out.println("This is the cats width" + getWidth());
-
+        animateDown = false;
+        animateLeft = false;
+        animateRight = true;
+        animateUp = false;
         // Put Cat picture path here in string
         cat = new Texture("spr_cat.png");
         Texture texture = new Texture("spr_catRight_strip11.png"); //put animation in texture
-        catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
+        catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+
     }
 
     public void update(float dt){
-        // velocity.add adds to velocity needs three parameters
         catAnimation.update(dt);
-        //velocity.add(0, 0, 0);
-       // velocity.scl(dt);
-       // position.add(0, velocity.y, 0);
+
 
         //current position + velocity
         position.x = position.x + finalVelocity.x;
         position.y = position.y + finalVelocity.y;
-        //System.out.println(position.x);
-        //System.out.println(position.y);
-
-        // Reverses what was scaled previously
-       // velocity.scl(1/dt);
-       bounds.setPosition(position.x, position.y);
+        bounds.setPosition(position.x, position.y);
     }
 
     public void kill(){
@@ -65,7 +67,7 @@ public class Cat {
     public boolean collides(Rectangle laser) {
 
         if (laser.overlaps(bounds)) {
-            System.out.println("Laser has been eaten!");
+            //System.out.println("Laser has been eaten!");
         }
         return laser.overlaps(bounds);
     }
@@ -137,6 +139,67 @@ public class Cat {
         if (!yPositive){
             chaseVelocity.y = chaseVelocity.y * -1;
         }
+
+        Texture texture;
+        //create new animation 11 frames 0.5 cycle time
+
+        Boolean isLeftOrRight;
+
+       // System.out.println("Cat Direction angle is " + angle);
+        if(angle <= (Math.PI/4)){
+            isLeftOrRight = true;
+        }
+        else{
+            isLeftOrRight = false;
+        }
+        if(isLeftOrRight){
+            if (finalVelocity.x > 0){ //right
+                if(!animateRight) {
+                    texture = new Texture("spr_catRight_strip11.png");
+                    catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = true;
+                    animateLeft = false;
+                    animateUp = false;
+                    animateDown = false;
+                }
+            }
+            else{ //left
+                if(!animateLeft) {
+                    texture = new Texture("spr_catLeft_strip11.png");
+                    catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = true;
+                    animateUp = false;
+                    animateDown = false;
+                }
+            }
+        }
+        else{
+            if(finalVelocity.y > 0){//up
+
+                if(!animateUp) {
+                    texture = new Texture("spr_catUp_strip11.png");
+                    catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = false;
+                    animateUp = true;
+                    animateDown = false;
+                    System.out.println("IsUP");
+                }
+            }
+            else{//down
+                if(!animateDown) {
+                    texture = new Texture("spr_catDown_strip11.png");
+                    catAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = false;
+                    animateUp = false;
+                    animateDown = true;
+                    System.out.println("IsDown");
+                }
+            }
+        }
+
     }
 
     public void accelerate(){

@@ -58,7 +58,7 @@ public class Dog {
     public boolean collides(Rectangle cat){
 
         if(cat.overlaps(bounds)) {
-            System.out.println("Cat has been eaten!");
+            //System.out.println("Cat has been eaten!");
         }
         return cat.overlaps(bounds);
     }
@@ -140,7 +140,7 @@ public class Dog {
 
     public void kill(){
         alive = false;
-        Gdx.app.log(TAG, "dog is dead");
+        //Gdx.app.log(TAG, "dog is dead");
     }
 
     public void dispose(){ dog.dispose(); }
