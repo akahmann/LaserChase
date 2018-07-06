@@ -133,8 +133,8 @@ public class Mouse {
     public void accelerate(){
         //how straight           //how much the dog slides
 
-        finalVelocity.x = (float)((chaseVelocity.x * .33) + (finalVelocity.x * .90));
-        finalVelocity.y = (float)((chaseVelocity.y * .33) + (finalVelocity.y * .90));
+        finalVelocity.x = (float)((chaseVelocity.x * .25) + (finalVelocity.x * .95));
+        finalVelocity.y = (float)((chaseVelocity.y * .25) + (finalVelocity.y * .95));
     }
 
     public void dispose(){ mouse.dispose();}
