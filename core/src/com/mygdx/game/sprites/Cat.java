@@ -14,13 +14,13 @@ public class Cat {
     private Vector3 chaseVelocity;//according to laser pointer
     private Vector3 finalVelocity;//according to acceleration and past velocities
     private Boolean alive;
-    boolean animateRight;
-    boolean animateLeft;
-    boolean animateUp;
-    boolean animateDown;
+    private boolean animateRight;
+    private boolean animateLeft;
+    private boolean animateUp;
+    private boolean animateDown;
     private double maxSpeed = 7;
     private Animation catAnimation; //create an animation
-    int scale = (int)(Gdx.graphics.getWidth() * .10);
+    private int scale = (int)(Gdx.graphics.getWidth() * .10);
     private Rectangle bounds;
 
     private Texture cat;
@@ -64,12 +64,9 @@ public class Cat {
         return bounds;
     }
 
-    public boolean collides(Rectangle laser) {
+    public boolean collides(Rectangle object) {
 
-        if (laser.overlaps(bounds)) {
-            //System.out.println("Laser has been eaten!");
-        }
-        return laser.overlaps(bounds);
+        return object.overlaps(bounds);
     }
 
     public Vector3 getPosition() {
@@ -125,7 +122,7 @@ public class Cat {
         }
 
         //get chase angle... in radians
-        double angle = 0;
+        double angle;
         angle = Math.atan(chaseDirection.y / chaseDirection.x);
 
         //get new chase velocity with the angle and hypotenuse(max speed)
