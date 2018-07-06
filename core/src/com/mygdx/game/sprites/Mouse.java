@@ -3,6 +3,7 @@ package com.mygdx.game.sprites;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class Mouse {
@@ -13,6 +14,7 @@ public class Mouse {
     private double maxSpeed = 7;
     private Animation mouseAnimation; //create an animation
     int scale = (int)(Gdx.graphics.getWidth() * .15);
+    private Rectangle bounds;
 
     private Texture mouse;
 
@@ -21,6 +23,7 @@ public class Mouse {
         chaseVelocity = new Vector3(0, 0, 0);
         finalVelocity = new Vector3(0, 0, 0);
         alive = true;
+        bounds = new Rectangle(x, y, getWidth(), getHeight());
 
 
         // Put Dog picture path here in string
@@ -114,6 +117,16 @@ public class Mouse {
             chaseVelocity.y = chaseVelocity.y * -1;
         }
 
+    }
+    public void kill(){
+        alive = false;
+    }
+
+    public Boolean isAlive(){
+        return alive;
+    }
+    public Rectangle getBounds(){
+        return bounds;
     }
 
     public void accelerate(){
