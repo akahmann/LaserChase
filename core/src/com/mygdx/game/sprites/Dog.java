@@ -15,6 +15,10 @@ public class Dog {
     private Vector3 chaseVelocity;//according to laser pointer
     private Vector3 finalVelocity;//according to acceleration and past velocities
     private Boolean alive;
+    boolean animateRight;
+    boolean animateLeft;
+    boolean animateUp;
+    boolean animateDown;
     private double maxSpeed = 7;
     private Animation dogAnimation; //create an animation
     int scale = (int)(Gdx.graphics.getWidth() * .15);
@@ -29,6 +33,11 @@ public class Dog {
         alive = true;
         Gdx.app.log(TAG, "dog is created");
 
+        // Setting Dogs default facing direction
+        animateDown = false;
+        animateLeft = false;
+        animateRight = true;
+        animateUp = false;
 
         // Put Dog picture path here in string
         dog = new Texture("spr_cat.png");
@@ -130,6 +139,67 @@ public class Dog {
         if (!yPositive){
             chaseVelocity.y = chaseVelocity.y * -1;
         }
+
+        Texture texture;
+        //create new animation 11 frames 0.5 cycle time
+
+        Boolean isLeftOrRight;
+
+        // System.out.println("Cat Direction angle is " + angle);
+        if(angle <= (Math.PI/4)){
+            isLeftOrRight = true;
+        }
+        else{
+            isLeftOrRight = false;
+        }
+        if(isLeftOrRight){
+            if (finalVelocity.x > 0){ //right
+                if(!animateRight) {
+                    texture = new Texture("spr_catRight_strip11.png");
+                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = true;
+                    animateLeft = false;
+                    animateUp = false;
+                    animateDown = false;
+                }
+            }
+            else{ //left
+                if(!animateLeft) {
+                    texture = new Texture("spr_catLeft_strip11.png");
+                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = true;
+                    animateUp = false;
+                    animateDown = false;
+                }
+            }
+        }
+        else{
+            if(finalVelocity.y > 0){//up
+
+                if(!animateUp) {
+                    texture = new Texture("spr_catUp_strip11.png");
+                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = false;
+                    animateUp = true;
+                    animateDown = false;
+                    System.out.println("IsUP");
+                }
+            }
+            else{//down
+                if(!animateDown) {
+                    texture = new Texture("spr_catDown_strip11.png");
+                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animateRight = false;
+                    animateLeft = false;
+                    animateUp = false;
+                    animateDown = true;
+                    System.out.println("IsDown");
+                }
+            }
+        }
+
     }
 
     public void accelerate(){
