@@ -13,7 +13,7 @@ public class Mouse {
     private Boolean alive;
     private double maxSpeed = 7;
     private Animation mouseAnimation; //create an animation
-    int scale = (int)(Gdx.graphics.getWidth() * .15);
+    int scale = (int)(Gdx.graphics.getWidth() * .10);
     private Rectangle bounds;
 
     private Texture mouse;
@@ -40,6 +40,7 @@ public class Mouse {
         //current position + velocity
         position.x = position.x + finalVelocity.x;
         position.y = position.y + finalVelocity.y;
+        bounds.setPosition(position.x, position.y);
     }
 
     public Vector3 getPosition() {
