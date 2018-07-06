@@ -34,7 +34,6 @@ public class Cat {
      * @param x Used for Cat's position and bounds in the x direction
      * @param y Used for Cat's position and bounds in the y direction
      */
-
     public Cat(int x, int y){
         position = new Vector3(x, y, 0);
         chaseVelocity = new Vector3(0, 0, 0);
@@ -57,7 +56,6 @@ public class Cat {
      *
      * @param dt Used to update Cat's position at a given time
      */
-
     public void update(float dt){
         catAnimation.update(dt);
 
@@ -69,9 +67,8 @@ public class Cat {
     }
 
     /**
-     * Let's us know when the Cat is dead
+     * Let us know when the Cat is dead
      */
-
     public void kill(){
         alive = false;
     }
@@ -80,7 +77,6 @@ public class Cat {
      *
      * @return returns that Cat is alive
      */
-
     public Boolean isAlive(){
         return alive;
     }
@@ -90,7 +86,6 @@ public class Cat {
      * @return Gets the bounds of the cat which helps
      * with Collision detection
      */
-
     public Rectangle getBounds(){
         return bounds;
     }
@@ -109,7 +104,6 @@ public class Cat {
      *
      * @return Get's the Cat's position
      */
-
     public Vector3 getPosition() {
         return position;
     }
@@ -118,7 +112,6 @@ public class Cat {
      *
      * @return Getting the Cat's animation specific frame
      */
-
     public TextureRegion getCat() { //before returned texture, now returns textureRegion
         return catAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
     }
@@ -127,7 +120,6 @@ public class Cat {
      *
      * @return Returns the width of the Cat which helps with Collision Detection
      */
-
     public int getWidth() {
         return scale;
     }
@@ -136,7 +128,6 @@ public class Cat {
      *
      * @return Returns the height of the Cat which helps with Collision Detection
      */
-
     public int getHeight() {
         return scale;
     }
@@ -145,7 +136,6 @@ public class Cat {
      *
      * @param position Sets Cat's position
      */
-
     public void setPosition(Vector3 position) {
         this.position = position;
     }
@@ -154,7 +144,6 @@ public class Cat {
      *
      * @param cat Returns a Cat Texture
      */
-
     public void setCat(Texture cat) {
         this.cat = cat;
     }
@@ -164,7 +153,6 @@ public class Cat {
      * @param position Using position to test Cat's position
      * with user touch input
      */
-
     public void teleport(Vector3 position){
         this.position.y = position.y;
         this.position.x = position.x;
@@ -177,7 +165,6 @@ public class Cat {
      * Rest of the class helps determine which way cat should be facing
      * at given velocity and direction
      */
-
     public void setChaseVelocity(Vector3 chasePoint){
 
         Vector3 chaseDirection = new Vector3(0,0,0);
@@ -278,7 +265,6 @@ public class Cat {
     /**
      * Determines how fast the cat speeds up
      */
-
     public void accelerate(){
                                    //how straight           //how much the cat slides
         finalVelocity.x = (float)((chaseVelocity.x * .4) + (finalVelocity.x * .9));
@@ -288,7 +274,6 @@ public class Cat {
     /**
      * Prevenets memory leaks by deleting cat when no longer needed
      */
-
     public void dispose(){ cat.dispose();}
 
 }
