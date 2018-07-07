@@ -15,7 +15,7 @@ import javax.xml.soap.Text;
 public class PlayState extends State {
 
     private Animal cat;
-    private Mouse mouse;
+    private Animal mouse;
     private Animal dog;
     private Laser laser;
     private Texture bg;
@@ -77,22 +77,22 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
 
         if(cat.isAlive()) {
-            sb.draw(cat.getAnimal(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
+            sb.draw(cat.getAnimalTexture(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
         }
         else{
             gsm.set(new PlayState(gsm));
         }
 
         if (mouse.isAlive()){
-            sb.draw(mouse.getMouse(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
+            sb.draw(mouse.getAnimalTexture(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         }
-        sb.draw(dog.getAnimal(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
+        sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
 
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.end();
 
     }
-    
+
     @Override
     public void dispose() {
         bg.dispose();
