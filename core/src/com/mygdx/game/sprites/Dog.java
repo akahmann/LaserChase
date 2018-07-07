@@ -6,7 +6,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
-
+/**
+ * This is the Dog Class everything that pertains
+ * to the dog is here including its movement,
+ * animation, drawing, and chase behavior
+ */
 
 
 public class Dog {
