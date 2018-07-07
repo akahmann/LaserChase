@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.sprites.Animal;
 import com.mygdx.game.sprites.Cat;
 import com.mygdx.game.sprites.Dog;
 import com.mygdx.game.sprites.Laser;
@@ -13,7 +14,7 @@ import com.mygdx.game.sprites.Mouse;
 import javax.xml.soap.Text;
 public class PlayState extends State {
 
-    private Cat cat;
+    private Animal cat;
     private Mouse mouse;
     private Dog dog;
     private Laser laser;
@@ -76,7 +77,7 @@ public class PlayState extends State {
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
 
         if(cat.isAlive()) {
-            sb.draw(cat.getCat(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
+            sb.draw(cat.getAnimal(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
         }
         else{
             gsm.set(new PlayState(gsm));
