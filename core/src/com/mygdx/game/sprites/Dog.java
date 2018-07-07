@@ -41,7 +41,7 @@ public class Dog {
 
         // Put Dog picture path here in string
         dog = new Texture("spr_cat.png");
-        Texture texture = new Texture("spr_catLeft_strip11.png"); //put animation in texture
+        Texture texture = new Texture("spr_dogLeft_strip11.png"); //put animation in texture
         dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
         bounds = new Rectangle(x, y, getWidth(), getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
@@ -155,7 +155,7 @@ public class Dog {
         if(isLeftOrRight){
             if (finalVelocity.x > 0){ //right
                 if(!animateRight) {
-                    texture = new Texture("spr_catRight_strip11.png");
+                    texture = new Texture("spr_dogRight_strip11.png");
                     dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
                     animateRight = true;
                     animateLeft = false;
@@ -165,7 +165,7 @@ public class Dog {
             }
             else{ //left
                 if(!animateLeft) {
-                    texture = new Texture("spr_catLeft_strip11.png");
+                    texture = new Texture("spr_dogLeft_strip11.png");
                     dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = true;
@@ -177,7 +177,7 @@ public class Dog {
         else{
             if(finalVelocity.y > 0){//up
 
-                if(!animateUp) {
+                /*if(!animateUp) {
                     texture = new Texture("spr_catUp_strip11.png");
                     dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
                     animateRight = false;
@@ -185,10 +185,10 @@ public class Dog {
                     animateUp = true;
                     animateDown = false;
                     System.out.println("IsUP");
-                }
+                }*/
             }
             else{//down
-                if(!animateDown) {
+                /*if(!animateDown) {
                     texture = new Texture("spr_catDown_strip11.png");
                     dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
                     animateRight = false;
@@ -196,7 +196,7 @@ public class Dog {
                     animateUp = false;
                     animateDown = true;
                     System.out.println("IsDown");
-                }
+                }*/
             }
         }
 
