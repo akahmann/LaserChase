@@ -22,10 +22,9 @@ public class Cat extends Animal {
      */
     public Cat(int x, int y) {
         super(x, y);
-        // Put Cat picture path here in string
-        animal = new Texture("spr_cat.png");
-        Texture texture = new Texture("spr_catRight_strip11.png"); //put animation in texture
-        animalAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+
+        animalTexture = new Texture("spr_catRight_strip11.png"); //put animation in texture
+        animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
     }
 
     /**
@@ -68,7 +67,7 @@ public class Cat extends Animal {
             chaseVelocity.y = chaseVelocity.y * -1;
         }
 
-        Texture texture;
+
         //create new animation 11 frames 0.5 cycle time
 
         Boolean isLeftOrRight;
@@ -82,8 +81,8 @@ public class Cat extends Animal {
         if (isLeftOrRight) {
             if (finalVelocity.x > 0) { //right
                 if (!animateRight) {
-                    texture = new Texture("spr_catRight_strip11.png");
-                    animalAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animalTexture = new Texture("spr_catRight_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = true;
                     animateLeft = false;
                     animateUp = false;
@@ -91,8 +90,8 @@ public class Cat extends Animal {
                 }
             } else { //left
                 if (!animateLeft) {
-                    texture = new Texture("spr_catLeft_strip11.png");
-                    animalAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animalTexture = new Texture("spr_catLeft_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = true;
                     animateUp = false;
@@ -103,8 +102,8 @@ public class Cat extends Animal {
             if (finalVelocity.y > 0) {//up
 
                 if (!animateUp) {
-                    texture = new Texture("spr_catUp_strip11.png");
-                    animalAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animalTexture = new Texture("spr_catUp_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = false;
                     animateUp = true;
@@ -113,8 +112,8 @@ public class Cat extends Animal {
                 }
             } else {//down
                 if (!animateDown) {
-                    texture = new Texture("spr_catDown_strip11.png");
-                    animalAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                    animalTexture = new Texture("spr_catDown_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = false;
                     animateUp = false;

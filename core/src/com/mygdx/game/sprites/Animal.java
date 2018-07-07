@@ -27,7 +27,7 @@ public class Animal {
     protected Animation animalAnimation; //create an animation
     protected int scale = (int)(Gdx.graphics.getWidth() * .10);
     protected Rectangle bounds;
-    protected Texture animal;
+    protected Texture animalTexture;
 
     /**
      *
@@ -108,7 +108,7 @@ public class Animal {
      *
      * @return Getting the animal's animation specific frame
      */
-    public TextureRegion getAnimal() { //before returned texture, now returns textureRegion
+    public TextureRegion getAnimalTexture() { //before returned texture, now returns textureRegion
         return animalAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
     }
 
@@ -140,8 +140,8 @@ public class Animal {
      *
      * @param animal Returns a Cat Texture
      */
-    public void setAnimal(Texture animal) {
-        this.animal = animal;
+    public void setAnimalTexture(Texture animal) {
+        this.animalTexture = animal;
     }
 
     /**
@@ -175,6 +175,6 @@ public class Animal {
     /**
      * Prevents memory leaks by deleting animal when no longer needed
      */
-    public void dispose(){ animal.dispose();}
+    public void dispose(){ animalTexture.dispose();}
 
 }
