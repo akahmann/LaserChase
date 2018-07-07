@@ -16,7 +16,7 @@ public class PlayState extends State {
 
     private Animal cat;
     private Mouse mouse;
-    private Dog dog;
+    private Animal dog;
     private Laser laser;
     private Texture bg;
 
@@ -86,14 +86,13 @@ public class PlayState extends State {
         if (mouse.isAlive()){
             sb.draw(mouse.getMouse(), mouse.getPosition().x, mouse.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         }
-        sb.draw(dog.getDog(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
+        sb.draw(dog.getAnimal(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
 
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         sb.end();
 
     }
-
-
+    
     @Override
     public void dispose() {
         bg.dispose();
