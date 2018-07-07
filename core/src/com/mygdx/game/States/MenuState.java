@@ -7,13 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MenuState extends State {
 
     private Texture background;
-    //private Texture playBtn;
+    private Texture playBtn;
 
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
         background = new Texture("spr_cat.png");
-        //playBtn = new Texture("LaserDot2.jpg");
+        playBtn = new Texture("PlayBtn.png");
     }
 
     @Override
@@ -33,13 +33,13 @@ public class MenuState extends State {
     public void render(SpriteBatch sb) {
         sb.begin();
         sb.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //sb.draw(playBtn, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        sb.draw(playBtn, Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 2);
         sb.end();
     }
 
     @Override
     public void dispose() {
         background.dispose();
-        //playBtn.dispose();
+        playBtn.dispose();
     }
 }
