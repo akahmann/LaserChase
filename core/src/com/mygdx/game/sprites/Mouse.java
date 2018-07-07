@@ -10,8 +10,8 @@ public class Mouse extends Animal {
 
     public Mouse(int x, int y){
         super(x,y);
-        animalTexture = new Texture("spr_catLeft_strip11.png"); //put animation in texture
-        animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f); //create new animation 11 frames 0.5 cycle time
+        animalTexture = new Texture("spr_mouseLeft_strip2.png"); //put animation in texture
+        animalAnimation = new Animation(new TextureRegion(animalTexture), 2, 0.5f);
     }
 
     public void setChaseVelocity(Vector3 chasePoint){
@@ -60,8 +60,9 @@ public class Mouse extends Animal {
         }
 
     }
+
     public void accelerate(){
-        //how straight           //how much the dog slides
+        //how straight           //how much the mouse slides
 
         finalVelocity.x = (float)((chaseVelocity.x * .25) + (finalVelocity.x * .95));
         finalVelocity.y = (float)((chaseVelocity.y * .25) + (finalVelocity.y * .95));
