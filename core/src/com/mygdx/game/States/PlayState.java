@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.sprites.Animal;
@@ -21,6 +22,7 @@ public class PlayState extends State {
     private Laser laser;
     private Texture bg;
     private int score;
+    BitmapFont scoreFont;
 
     public PlayState(GameStateManager gsm) {
 
@@ -32,6 +34,7 @@ public class PlayState extends State {
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         Gdx.app.setLogLevel(Application.LOG_INFO);
         score = 0;
+        scoreFont = new BitmapFont();
         prefs.putInteger("score", 0);
         prefs.flush();
     }
@@ -105,6 +108,10 @@ public class PlayState extends State {
         sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
 
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
+        scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        scoreFont.getData().setScale(10, 10);
+        scoreFont.draw(sb,  "" + score/30, 25, 100);
+
         sb.end();
 
     }
