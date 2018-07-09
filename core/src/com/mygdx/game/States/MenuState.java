@@ -19,6 +19,29 @@ public class MenuState extends State {
         background = new Texture("spr_cat.png");
         playBtn = new Texture("PlayBtn.png");
         btnBounds = new Rectangle(Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 2, 600, 260);
+
+
+        int currentScore = prefs.getInteger("score");
+        for(int i = 0; i < 3; i++){
+            if(currentScore > prefs.getInteger("score1")){
+                prefs.putInteger("score3", prefs.getInteger("score2"));
+                prefs.putInteger("score2", prefs.getInteger("score1"));
+                prefs.putInteger("score1", currentScore);
+
+            }
+            else if(currentScore > prefs.getInteger("score2")){
+                prefs.putInteger("score3", prefs.getInteger("score2"));
+                prefs.putInteger("score2", currentScore);
+            }
+            else if(currentScore > prefs.getInteger("score3")){
+                prefs.putInteger("score3", currentScore);
+            }
+        }
+        prefs.flush();
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^CURRENT" + currentScore / 30);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP1  " + prefs.getInteger("score1") / 30);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP2  " + prefs.getInteger("score2") / 30);
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP3  " + prefs.getInteger("score3") / 30);
     }
 
     @Override
