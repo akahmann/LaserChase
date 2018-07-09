@@ -108,7 +108,7 @@ public class Cat extends Animal {
                     animateLeft = false;
                     animateUp = true;
                     animateDown = false;
-                    System.out.println("IsUP");
+                   // System.out.println("IsUP");
                 }
             } else {//down
                 if (!animateDown) {
@@ -118,7 +118,7 @@ public class Cat extends Animal {
                     animateLeft = false;
                     animateUp = false;
                     animateDown = true;
-                    System.out.println("IsDown");
+                   // System.out.println("IsDown");
                 }
             }
         }

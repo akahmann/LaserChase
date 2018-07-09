@@ -2,6 +2,7 @@ package com.mygdx.game.States;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -19,6 +20,7 @@ public class PlayState extends State {
     private Animal dog;
     private Laser laser;
     private Texture bg;
+    private int score;
 
     public PlayState(GameStateManager gsm) {
 
@@ -29,6 +31,9 @@ public class PlayState extends State {
         laser = new Laser(0, 0);
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         Gdx.app.setLogLevel(Application.LOG_INFO);
+        score = 0;
+        prefs.putInteger("score", 0);
+        prefs.flush();
     }
 
     @Override
@@ -61,12 +66,23 @@ public class PlayState extends State {
 
         if(dog.collides(cat.getBounds())){
             cat.kill();
+            prefs.putInteger("score", score);//Insert data into Preferences
+            prefs.flush();
         }
 
         if(cat.collides(mouse.getBounds())){
-            mouse.kill();
+            if(mouse.isAlive()) {
+                mouse.kill();
+
+                //
+                prefs.flush();//Data will be washed into the (important)
+
+                //String name = prefs.getString("name","no name stored");//Gets the key for the
+            }
         }
 
+        score++;
+        System.out.println("score ******************" + score / 30);
     }
 
     @Override
@@ -80,7 +96,7 @@ public class PlayState extends State {
             sb.draw(cat.getAnimalTexture(), cat.getPosition().x, cat.getPosition().y, (float) (Gdx.graphics.getWidth() * .15), (float) (Gdx.graphics.getWidth() * .15));
         }
         else{
-            gsm.set(new PlayState(gsm));
+            gsm.set(new MenuState(gsm));
         }
 
         if (mouse.isAlive()){
