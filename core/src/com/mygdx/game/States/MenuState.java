@@ -21,7 +21,7 @@ public class MenuState extends State {
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
-       // resetScores();
+        //resetScores();
         background = new Texture("spr_cat.png");
         playBtn = new Texture("PlayBtn.png");
         btnBounds = new Rectangle(Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 8, 600, 260);
