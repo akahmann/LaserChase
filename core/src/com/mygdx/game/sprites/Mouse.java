@@ -59,6 +59,26 @@ public class Mouse extends Animal {
             chaseVelocity.y = chaseVelocity.y * -1;
         }
 
+        if (finalVelocity.x > 0) { //right
+            if (!animateRight) {
+                animalTexture = new Texture("spr_mouseRight_strip2.png");
+                animalAnimation = new Animation(new TextureRegion(animalTexture), 2, 1f);
+                animateRight = true;
+                animateLeft = false;
+                animateUp = false;
+                animateDown = false;
+            }
+        } else { //left
+            if (!animateLeft) {
+                animalTexture = new Texture("spr_mouseLeft_strip2.png");
+                animalAnimation = new Animation(new TextureRegion(animalTexture), 2, 1f);
+                animateRight = false;
+                animateLeft = true;
+                animateUp = false;
+                animateDown = false;
+            }
+        }
+
     }
 
     public void accelerate(){

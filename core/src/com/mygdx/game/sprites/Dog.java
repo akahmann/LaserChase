@@ -92,25 +92,25 @@ public class Dog extends Animal {
         } else {
             if (finalVelocity.y > 0) {//up
 
-                /*if(!animateUp) {
-                    texture = new Texture("spr_catUp_strip11.png");
-                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                if(!animateUp) {
+                    animalTexture = new Texture("spr_dogUp_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = false;
                     animateUp = true;
                     animateDown = false;
                     System.out.println("IsUP");
-                }*/
+                }
             } else {//down
-                /*if(!animateDown) {
-                    texture = new Texture("spr_catDown_strip11.png");
-                    dogAnimation = new Animation(new TextureRegion(texture), 11, 0.5f);
+                if(!animateDown) {
+                    animalTexture = new Texture("spr_dogDown_strip11.png");
+                    animalAnimation = new Animation(new TextureRegion(animalTexture), 11, 0.5f);
                     animateRight = false;
                     animateLeft = false;
                     animateUp = false;
                     animateDown = true;
                     System.out.println("IsDown");
-                }*/
+                }
             }
         }
 
