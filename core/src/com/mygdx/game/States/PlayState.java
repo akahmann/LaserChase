@@ -110,7 +110,7 @@ public class PlayState extends State {
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         scoreFont.getData().setScale(10, 10);
-        scoreFont.draw(sb,  "" + score/30, 25, 100);
+        scoreFont.draw(sb,  "" + score/30, 50, 150);
 
         sb.end();
 
