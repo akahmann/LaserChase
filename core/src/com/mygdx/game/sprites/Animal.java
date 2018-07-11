@@ -63,10 +63,17 @@ public class Animal {
     }
 
     /**
-     * Let us know when the animal is dead
+     * kill the animal
      */
     public void kill(){
         alive = false;
+    }
+
+    /**
+     * Let us know when the animal is dead
+     */
+    public void revive(){
+        alive = true;
     }
 
     /**
