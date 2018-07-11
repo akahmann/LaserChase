@@ -21,6 +21,7 @@ public class MenuState extends State {
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
+       // resetScores();
         background = new Texture("spr_cat.png");
         playBtn = new Texture("PlayBtn.png");
         btnBounds = new Rectangle(Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 8, 600, 260);
@@ -53,6 +54,13 @@ public class MenuState extends State {
         //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP3  " + prefs.getInteger("score3") / 30);
     }
 
+    public void resetScores(){
+        prefs.putInteger("score",0);
+        prefs.putInteger("score1", 0);
+        prefs.putInteger("score2", 0);
+        prefs.putInteger("score3", 0);
+        prefs.flush();
+    }
     @Override
     public void handleInput() {
         if(Gdx.input.justTouched()){

@@ -14,6 +14,8 @@ import com.mygdx.game.sprites.Dog;
 import com.mygdx.game.sprites.Laser;
 import com.mygdx.game.sprites.Mouse;
 
+import java.util.Random;
+
 import javax.xml.soap.Text;
 public class PlayState extends State {
 
@@ -30,8 +32,8 @@ public class PlayState extends State {
 
         super(gsm);
         cat = new Cat((int)(Gdx.graphics.getWidth() * .5) ,(int)(Gdx.graphics.getHeight() * .5));
-        dog = new Dog((int)(Gdx.graphics.getWidth() * .25) ,(int)(Gdx.graphics.getHeight() * .25));
-        mouse = new Mouse((int)(Gdx.graphics.getWidth() * .75) ,(int)(Gdx.graphics.getHeight() * .75));
+        dog = new Dog((int)(Gdx.graphics.getWidth() * .75) ,(int)(Gdx.graphics.getHeight() * .75));
+        mouse = new Mouse((int)(Gdx.graphics.getWidth() * .25) ,(int)(Gdx.graphics.getHeight() * .25));
         laser = new Laser(0, 0);
         car = new Car((int)(Gdx.graphics.getWidth() * .25), (int)(Gdx.graphics.getHeight() * .25));
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
@@ -73,17 +75,31 @@ public class PlayState extends State {
         if(dog.collides(cat.getBounds())){
             cat.kill();
             prefs.putInteger("score", score);//Insert data into Preferences
+            //System.out.println("score LAST" + score / 30);
+
             prefs.flush();
         }
 
-        if(cat.collides(mouse.getBounds())){
-            if(mouse.isAlive()) {
+        if(cat.collides(mouse.getBounds())) {
+            if (mouse.isAlive()) {
                 mouse.kill();
+                score += 20 * 30;
+            }
+        }
 
-                //
-                prefs.flush();//Data will be washed into the (important)
-
-                //String name = prefs.getString("name","no name stored");//Gets the key for the
+        if(mouse.isAlive() == false){
+            Random rand = new Random();
+            int spawnChance = rand.nextInt(300) + 1;
+            if(spawnChance == 10) {
+                int coinFlip = rand.nextInt(2) + 1;
+                int randomNum1 = rand.nextInt(1000) + 800;
+                int randomNum2 = rand.nextInt(1000) + 1;
+                if(coinFlip == 1){
+                    randomNum1 *= -1;
+                }
+                Vector3 respawnPosition = new Vector3(randomNum1, randomNum2, 0);
+                mouse.revive();
+                mouse.teleport(respawnPosition);
             }
         }
 
@@ -99,6 +115,10 @@ public class PlayState extends State {
                 dog.kill();
             }
         }
+
+
+
+                //String name = prefs.getString("name","no name stored");//Gets the key for the
         score++;
         System.out.println("score ******************" + score / 30);
     }
