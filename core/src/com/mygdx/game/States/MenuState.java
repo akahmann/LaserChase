@@ -29,7 +29,8 @@ public class MenuState extends State {
          secondScore = new BitmapFont();
          thirdScore = new BitmapFont();
 
-        int currentScore = prefs.getInteger("score") / 30;
+        int currentScore = prefs.getInteger("score");
+        //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^CURRENT" + currentScore / 30);
         for(int i = 0; i < 3; i++){
             if(currentScore > prefs.getInteger("score1")){
                 prefs.putInteger("score3", prefs.getInteger("score2"));
@@ -46,10 +47,10 @@ public class MenuState extends State {
             }
         }
         prefs.flush();
-//        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^CURRENT" + currentScore / 30);
-//        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP1  " + prefs.getInteger("score1") / 30);
-//        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP2  " + prefs.getInteger("score2") / 30);
-//        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP3  " + prefs.getInteger("score3") / 30);
+
+        //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP1  " + prefs.getInteger("score1") / 30);
+        //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP2  " + prefs.getInteger("score2") / 30);
+        //System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^TOP3  " + prefs.getInteger("score3") / 30);
     }
 
     @Override
