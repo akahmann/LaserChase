@@ -27,6 +27,8 @@ public class Car {
         bounds = new Rectangle(x, y, getWidth(), getHeight());
         animateLeft = false;
         animateRight = true;
+        carTexture = new Texture("spr_catRight_strip11.png"); //put animation in texture
+        carAnimation = new Animation(new TextureRegion(carTexture), 11, 0.5f);
     }
 
     /**
@@ -36,12 +38,17 @@ public class Car {
     public void update(float dt){
         carAnimation.update(dt);
 
-
         //current position + velocity
-        position.x = position.x + finalVelocity.x;
-        position.y = position.y + finalVelocity.y;
+        //position.x = position.x + finalVelocity.x;
+        position.x += 10; //moves right
         bounds.setPosition(position.x, position.y);
     }
+
+    public Vector3 getFinalVelocity(){
+        return finalVelocity;
+    }
+
+    public void setFinalVelocity(Vector3 finalVelocity){ this.finalVelocity = finalVelocity; }
 
     /**
      * Let us know when the animal is dead
@@ -121,7 +128,7 @@ public class Car {
      *
      * @param car Returns a Cat Texture
      */
-    public void setAnimalTexture(Texture car) {
+    public void setCarTexture(Texture car) {
         this.carTexture = car;
     }
 

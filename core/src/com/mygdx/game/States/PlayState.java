@@ -60,7 +60,6 @@ public class PlayState extends State {
         cat.accelerate();
         cat.setChaseVelocity(laser.getPosition());
         cat.update(dt);
-
         dog.accelerate();
         dog.setChaseVelocity(cat.getPosition());
         dog.update(dt);
@@ -123,7 +122,7 @@ public class PlayState extends State {
         }
 
         if(car.isAlive()){
-            sb.draw(car.getCarTexture(), car.getPosition().x, car.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth()));
+            sb.draw(car.getCarTexture(), car.getPosition().x, car.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .25));
         }
         sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
 
@@ -143,6 +142,7 @@ public class PlayState extends State {
         laser.dispose();
         mouse.dispose();
         dog.dispose();
+        car.dispose();
 
     }
 }
