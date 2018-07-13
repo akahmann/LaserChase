@@ -59,6 +59,8 @@ public class Dog extends Animal {
         }
 
 
+
+
         //create new animation 11 frames 0.5 cycle time
 
         Boolean isLeftOrRight;

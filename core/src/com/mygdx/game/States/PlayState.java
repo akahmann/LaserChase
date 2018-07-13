@@ -80,7 +80,7 @@ public class PlayState extends State {
 
 
 
-        if(dog.collides(cat.getBounds())){
+        if(dog.collides(cat.getBounds()) && dog.isAlive()){
             cat.kill();
             prefs.putInteger("score", score);//Insert data into Preferences
             //System.out.println("score LAST" + score / 30);
@@ -92,6 +92,22 @@ public class PlayState extends State {
             if (mouse.isAlive()) {
                 mouse.kill();
                 score += 20 * 30;
+            }
+        }
+
+        if(dog.isAlive() == false){
+            Random rand = new Random();
+            int spawnChance = rand.nextInt(100) + 1;
+            if(spawnChance == 10) {
+                int coinFlip = rand.nextInt(2) + 1;
+                int randomNum1 = rand.nextInt(1000) + 800;
+                int randomNum2 = rand.nextInt(1000) + 1;
+                if(coinFlip == 1){
+                    randomNum1 *= -1;
+                }
+                Vector3 respawnPosition = new Vector3(randomNum1, randomNum2, 0);
+                dog.revive();
+                dog.teleport(respawnPosition);
             }
         }
 
@@ -170,7 +186,9 @@ public class PlayState extends State {
             sb.draw(car2.getCarTexture(), car2.getPosition().x, car2.getPosition().y, (float)(Gdx.graphics.getWidth() * .25), (float)(Gdx.graphics.getWidth() * .25));
         }
 
-        sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
+        if(dog.isAlive()){
+            sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
+        }
 
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
