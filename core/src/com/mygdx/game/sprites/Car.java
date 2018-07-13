@@ -14,21 +14,32 @@ public class Car {
     protected boolean animateLeft;
     protected double maxSpeed = 10;
     protected Animation carAnimation; //create an animation
-    protected int scale = (int)(Gdx.graphics.getWidth() * .10);
+    protected int scale = (int)(Gdx.graphics.getWidth() * .20);
     protected Rectangle bounds;
     protected Texture carTexture;
+    protected boolean goLeft;
 
 
 
-    public Car(int x, int y){
+    public Car(int x, int y, boolean goLeft, String texturePath){
         position = new Vector3(x, y, 0);
         finalVelocity = new Vector3(0, 0, 0);
         alive = true;
         bounds = new Rectangle(x, y, getWidth(), getHeight());
         animateLeft = false;
         animateRight = true;
-        carTexture = new Texture("spr_catRight_strip11.png"); //put animation in texture
-        carAnimation = new Animation(new TextureRegion(carTexture), 11, 0.5f);
+        carTexture = new Texture(texturePath); //put animation in texture
+        carAnimation = new Animation(new TextureRegion(carTexture), 5, 0.7f);
+        this.goLeft = goLeft;
+    }
+
+    public boolean isOnScreen(){
+        if(position.x < -400 || position.x > Gdx.graphics.getWidth() + 300){
+            return true;
+        }
+
+        else
+            return false;
     }
 
     /**
@@ -36,11 +47,21 @@ public class Car {
      * @param dt Used to update animal's position at a given time
      */
     public void update(float dt){
+        isOnScreen();
         carAnimation.update(dt);
+        if(isOnScreen()){
+            if(goLeft)
+                position.x = Gdx.graphics.getWidth() + 99;
 
-        //current position + velocity
-        //position.x = position.x + finalVelocity.x;
-        position.x += 10; //moves right
+            else
+                position.x = -199;
+        }
+        if(goLeft == false)
+            position.x += 10; //moves right
+
+        else
+            position.x -= 10; // moves left
+
         bounds.setPosition(position.x, position.y);
     }
 

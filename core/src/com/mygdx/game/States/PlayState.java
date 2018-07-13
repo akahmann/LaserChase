@@ -24,6 +24,7 @@ public class PlayState extends State {
     private Animal dog;
     private Laser laser;
     private Car car;
+    private Car car2;
     private Texture bg;
     private int score;
     BitmapFont scoreFont;
@@ -35,7 +36,9 @@ public class PlayState extends State {
         dog = new Dog((int)(Gdx.graphics.getWidth() * .75) ,(int)(Gdx.graphics.getHeight() * .75));
         mouse = new Mouse((int)(Gdx.graphics.getWidth() * .25) ,(int)(Gdx.graphics.getHeight() * .25));
         laser = new Laser(0, 0);
-        car = new Car((int)(Gdx.graphics.getWidth() * .25), (int)(Gdx.graphics.getHeight() * .25));
+        car = new Car(-190, Gdx.graphics.getHeight() / 3, false, "spr_carBlueRight_strip5.png");
+        car2 = new Car(Gdx.graphics.getWidth(), (int)(Gdx.graphics.getHeight() / 1.5), true, "spr_carBlueLeft_strip5.png");
+
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         Gdx.app.setLogLevel(Application.LOG_INFO);
         score = 0;
@@ -70,7 +73,12 @@ public class PlayState extends State {
         mouse.setChaseVelocity(cat.getPosition());
         mouse.update(dt);
         laser.update(dt);
+
+
         car.update(dt);
+        car2.update(dt);
+
+
 
         if(dog.collides(cat.getBounds())){
             cat.kill();
@@ -116,6 +124,19 @@ public class PlayState extends State {
             }
         }
 
+        if(car2.collides(cat.getBounds())){
+            if(cat.isAlive()){
+                cat.kill();
+                prefs.flush();
+            }
+        }
+
+        if(car2.collides(dog.getBounds())){
+            if(dog.isAlive()){
+                dog.kill();
+            }
+        }
+
 
 
                 //String name = prefs.getString("name","no name stored");//Gets the key for the
@@ -142,8 +163,13 @@ public class PlayState extends State {
         }
 
         if(car.isAlive()){
-            sb.draw(car.getCarTexture(), car.getPosition().x, car.getPosition().y, (float)(Gdx.graphics.getWidth() * .15), (float)(Gdx.graphics.getWidth() * .25));
+            sb.draw(car.getCarTexture(), car.getPosition().x, car.getPosition().y, (float)(Gdx.graphics.getWidth() * .25), (float)(Gdx.graphics.getWidth() * .25));
         }
+
+        if(car2.isAlive() ){
+            sb.draw(car2.getCarTexture(), car2.getPosition().x, car2.getPosition().y, (float)(Gdx.graphics.getWidth() * .25), (float)(Gdx.graphics.getWidth() * .25));
+        }
+
         sb.draw(dog.getAnimalTexture(), dog.getPosition().x, dog.getPosition().y, (float)(Gdx.graphics.getWidth() * .22), (float)(Gdx.graphics.getWidth() * .22));
 
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
@@ -163,6 +189,7 @@ public class PlayState extends State {
         mouse.dispose();
         dog.dispose();
         car.dispose();
+        car2.dispose();
 
     }
 }
