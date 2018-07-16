@@ -129,6 +129,7 @@ public class PlayState extends State {
 
         if(car.collides(cat.getBounds())){
             if(cat.isAlive()){
+                prefs.putInteger("score", score);//Insert data into Preferences
                 cat.kill();
                 prefs.flush();
             }
@@ -142,6 +143,7 @@ public class PlayState extends State {
 
         if(car2.collides(cat.getBounds())){
             if(cat.isAlive()){
+                prefs.putInteger("score", score);//Insert data into Preferences
                 cat.kill();
                 prefs.flush();
             }
@@ -157,7 +159,7 @@ public class PlayState extends State {
 
                 //String name = prefs.getString("name","no name stored");//Gets the key for the
         score++;
-        System.out.println("score ******************" + score / 30);
+        //System.out.println("score ******************" + score / 30);
     }
 
     @Override
