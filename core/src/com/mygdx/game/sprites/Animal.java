@@ -13,7 +13,6 @@ import javax.swing.text.StyledEditorKit;
  * to the animal is here including its movement,
  * animation, drawing, and chase behavior
  */
-
 public class Animal {
     protected Vector3 position;
     protected Vector3 chaseVelocity;//according to laser pointer
@@ -78,7 +77,7 @@ public class Animal {
 
     /**
      *
-     * @return returns that Cat is alive
+     * @return returns that animal is alive
      */
     public Boolean isAlive(){
         return alive;
