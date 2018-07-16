@@ -84,7 +84,7 @@ public class Mouse extends Animal {
     public void accelerate(){
         //how straight           //how much the mouse slides
 
-        finalVelocity.x = (float)((chaseVelocity.x * .25) + (finalVelocity.x * .95));
-        finalVelocity.y = (float)((chaseVelocity.y * .25) + (finalVelocity.y * .95));
+        finalVelocity.x = (float)((chaseVelocity.x * .22) + (finalVelocity.x * .95));
+        finalVelocity.y = (float)((chaseVelocity.y * .22) + (finalVelocity.y * .95));
     }
 }
