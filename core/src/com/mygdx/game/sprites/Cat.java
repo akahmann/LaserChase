@@ -13,7 +13,6 @@ import javax.swing.text.StyledEditorKit;
  * to the cat is here including its movement,
  * animation, drawing, and chase behavior
  */
-
 public class Cat extends Animal {
 
     /**
@@ -68,11 +67,8 @@ public class Cat extends Animal {
         }
 
 
-        //create new animation 11 frames 0.5 cycle time
 
         Boolean isLeftOrRight;
-
-        // System.out.println("Cat Direction angle is " + angle);
         if (angle <= (Math.PI / 4)) {
             isLeftOrRight = true;
         } else {

@@ -35,11 +35,11 @@ public class Car {
 
     public boolean isOnScreen(){
         if(position.x < -400 || position.x > Gdx.graphics.getWidth() + 300){
-            return true;
+            return false;
         }
 
         else
-            return false;
+            return true;
     }
 
     /**
@@ -49,12 +49,12 @@ public class Car {
     public void update(float dt){
         isOnScreen();
         carAnimation.update(dt);
-        if(isOnScreen()){
+        if(!isOnScreen()){
             if(goLeft)
                 position.x = Gdx.graphics.getWidth() + 99;
 
             else
-                position.x = -199;
+                position.x = -399;
         }
         if(goLeft == false)
             position.x += 10; //moves right
