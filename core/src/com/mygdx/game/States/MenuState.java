@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.game.sprites.Animation;
 
 public class MenuState extends State {
 
     private Texture background;
+    private Animation backgroundAnimation;
     private Texture playBtn;
     private Rectangle btnBounds;
 
@@ -22,7 +25,9 @@ public class MenuState extends State {
     public MenuState(GameStateManager gsm) {
         super(gsm);
         //resetScores();
-        background = new Texture("spr_cat.png");
+        background = new Texture("spr_menuScreen_strip11.png");
+        //animalTexture = new Texture("spr_catRight_strip11.png");
+        backgroundAnimation = new Animation(new TextureRegion(background), 11, 0.5f);
         playBtn = new Texture("PlayBtn.png");
         btnBounds = new Rectangle(Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 8, 600, 260);
          currentScoreFont = new BitmapFont();
@@ -79,6 +84,7 @@ public class MenuState extends State {
 
     @Override
     public void update(float dt) {
+        backgroundAnimation.update(dt);
         handleInput();
     }
 
@@ -87,6 +93,7 @@ public class MenuState extends State {
         sb.begin();
         //sb.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         sb.draw(playBtn, Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 8);
+        //sb.draw(getBackgroundTexture());
 
         topScore.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         topScore.getData().setScale(10, 10);
