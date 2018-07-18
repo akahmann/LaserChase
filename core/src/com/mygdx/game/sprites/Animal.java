@@ -15,7 +15,7 @@ import javax.swing.text.StyledEditorKit;
  */
 public class Animal {
     protected Vector3 position;
-    protected Vector3 chaseVelocity;//according to laser pointer
+    protected Vector3 chaseVelocity;
     protected Vector3 finalVelocity;//according to acceleration and past velocities
     protected Boolean alive;
     protected boolean animateRight;
@@ -69,7 +69,7 @@ public class Animal {
     }
 
     /**
-     * Let us know when the animal is dead
+     * Let the animal live!
      */
     public void revive(){
         alive = true;
@@ -115,12 +115,12 @@ public class Animal {
      * @return Getting the animal's animation specific frame
      */
     public TextureRegion getAnimalTexture() { //before returned texture, now returns textureRegion
-        return animalAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
+        return animalAnimation.getFrame();
     }
 
     /**
      *
-     * @return Returns the width of the Cat which helps with Collision Detection
+     * @return Returns the width of the animal which helps with Collision Detection
      */
     public int getWidth() {
         return scale;
@@ -128,7 +128,7 @@ public class Animal {
 
     /**
      *
-     * @return Returns the height of the Cat which helps with Collision Detection
+     * @return Returns the height of the animal which helps with Collision Detection
      */
     public int getHeight() {
         return scale;
@@ -136,7 +136,7 @@ public class Animal {
 
     /**
      *
-     * @param position Sets Cat's position
+     * @param position Sets animal's position
      */
     public void setPosition(Vector3 position) {
         this.position = position;
@@ -144,7 +144,7 @@ public class Animal {
 
     /**
      *
-     * @param animal Returns a Cat Texture
+     * @param animal Returns a animals Texture
      */
     public void setAnimalTexture(Texture animal) {
         this.animalTexture = animal;
@@ -152,7 +152,7 @@ public class Animal {
 
     /**
      *
-     * @param position Using position to test Cat's position
+     * @param position Using position to test animal's position
      * with user touch input
      */
     public void teleport(Vector3 position){

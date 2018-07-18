@@ -6,16 +6,27 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * a mouse is meant to annoy a cat.
+ */
 public class Mouse extends Animal {
 
+    /**
+     * Create a mouse
+     * @param x
+     * @param y
+     */
     public Mouse(int x, int y){
         super(x,y);
         animalTexture = new Texture("spr_mouseLeft_strip2.png"); //put animation in texture
         animalAnimation = new Animation(new TextureRegion(animalTexture), 2, 0.5f);
     }
 
+    /**
+     * The mouse evades the point that you send.
+     * @param chasePoint Used to have the animal chase the given Point
+     */
     public void setChaseVelocity(Vector3 chasePoint){
-
         Vector3 chaseDirection = new Vector3(0,0,0);
         //Final - initial.................
         chaseDirection.x = (chasePoint.x - position.x);
@@ -23,7 +34,6 @@ public class Mouse extends Animal {
 
         //find chase distance...
         double distanceOfChaser = Math.sqrt(Math.pow(chaseDirection.x,2) + Math.pow(chaseDirection.y,2));
-       // System.out.println("DISTANCE TO CAT" + distanceOfChaser);
         if (distanceOfChaser < 550)
         {
             //-1 in order to run away
@@ -83,7 +93,6 @@ public class Mouse extends Animal {
 
     public void accelerate(){
         //how straight           //how much the mouse slides
-
         finalVelocity.x = (float)((chaseVelocity.x * .22) + (finalVelocity.x * .95));
         finalVelocity.y = (float)((chaseVelocity.y * .22) + (finalVelocity.y * .95));
     }
