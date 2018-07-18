@@ -11,10 +11,12 @@ import com.badlogic.gdx.math.Vector3;
  * to the dog is here including its movement,
  * animation, drawing, and chase behavior
  */
-
-
 public class Dog extends Animal {
-
+    /**
+     * creates a dog
+     * @param x
+     * @param y
+     */
     public Dog(int x, int y) {
         super(x, y);
         // Put Dog picture path here in string
@@ -24,6 +26,11 @@ public class Dog extends Animal {
         bounds = new Rectangle(x, y, getWidth(), getHeight()); //this is probably for collision detection. Divide by per frame (11)
     }
 
+    /**
+     * Dog chases an object. It's speed is different compared to any other animals chase function.
+     * this also changes the animation
+     * @param chasePoint Used to have the animal chase the given Point
+     */
     public void setChaseVelocity(Vector3 chasePoint) {
         Vector3 chaseDirection = new Vector3(0, 0, 0);
         //Final - initial.................
@@ -59,13 +66,8 @@ public class Dog extends Animal {
         }
 
 
-
-
-        //create new animation 11 frames 0.5 cycle time
-
         Boolean isLeftOrRight;
 
-        // System.out.println("Cat Direction angle is " + angle);
         if (angle <= (Math.PI / 4)) {
             isLeftOrRight = true;
         } else {
@@ -118,6 +120,9 @@ public class Dog extends Animal {
 
     }
 
+    /**
+     * changed velocity of the dog.
+     */
     public void accelerate() {
         //how straight           //how much the dog slides
         finalVelocity.x = (float) ((chaseVelocity.x * .3) + (finalVelocity.x * .95));
