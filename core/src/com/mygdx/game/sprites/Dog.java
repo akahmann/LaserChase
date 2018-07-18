@@ -125,7 +125,7 @@ public class Dog extends Animal {
      */
     public void accelerate() {
         //how straight           //how much the dog slides
-        finalVelocity.x = (float) ((chaseVelocity.x * .3) + (finalVelocity.x * .95));
-        finalVelocity.y = (float) ((chaseVelocity.y * .3) + (finalVelocity.y * .95));
+        finalVelocity.x = (float) ((chaseVelocity.x * .3) + (finalVelocity.x * .93));
+        finalVelocity.y = (float) ((chaseVelocity.y * .3) + (finalVelocity.y * .93));
     }
 }
