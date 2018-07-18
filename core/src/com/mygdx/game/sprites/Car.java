@@ -8,22 +8,25 @@ import com.badlogic.gdx.math.Vector3;
 
 public class Car {
     protected Vector3 position;
-    protected Vector3 finalVelocity;//according to acceleration and past velocities
     protected Boolean alive;
     protected boolean animateRight;
     protected boolean animateLeft;
-    protected double maxSpeed = 10;
     protected Animation carAnimation; //create an animation
     protected int scale = (int)(Gdx.graphics.getWidth() * .20);
     protected Rectangle bounds;
     protected Texture carTexture;
     protected boolean goLeft;
 
-
+    /**
+     * Sets Cons
+     * @param x
+     * @param y
+     * @param goLeft
+     * @param texturePath
+     */
 
     public Car(int x, int y, boolean goLeft, String texturePath){
         position = new Vector3(x, y, 0);
-        finalVelocity = new Vector3(0, 0, 0);
         alive = true;
         bounds = new Rectangle(x, y, getWidth(), getHeight());
         animateLeft = false;
@@ -32,6 +35,11 @@ public class Car {
         carAnimation = new Animation(new TextureRegion(carTexture), 5, 0.7f);
         this.goLeft = goLeft;
     }
+
+    /**
+     * Checks if the Car is still on the screen
+     * @return
+     */
 
     public boolean isOnScreen(){
         if(position.x < -400 || position.x > Gdx.graphics.getWidth() + 300){
@@ -44,7 +52,7 @@ public class Car {
 
     /**
      *
-     * @param dt Used to update animal's position at a given time
+     * @param dt Used to update car's position at a given time
      */
     public void update(float dt){
         isOnScreen();
@@ -65,14 +73,8 @@ public class Car {
         bounds.setPosition(position.x, position.y);
     }
 
-    public Vector3 getFinalVelocity(){
-        return finalVelocity;
-    }
-
-    public void setFinalVelocity(Vector3 finalVelocity){ this.finalVelocity = finalVelocity; }
-
     /**
-     * Let us know when the animal is dead
+     * Let us know when the car is dead
      */
     public void kill(){
         alive = false;
@@ -80,7 +82,7 @@ public class Car {
 
     /**
      *
-     * @return returns that Cat is alive
+     * @return returns that Car is alive
      */
     public Boolean isAlive(){
         return alive;
@@ -88,7 +90,7 @@ public class Car {
 
     /**
      *
-     * @return Gets the bounds of the animal which helps
+     * @return Gets the bounds of the car which helps
      * with Collision detection
      */
     public Rectangle getBounds(){
@@ -107,7 +109,7 @@ public class Car {
 
     /**
      *
-     * @return Get's the animals's position
+     * @return Get's the car's position
      */
     public Vector3 getPosition() {
         return position;
@@ -115,15 +117,15 @@ public class Car {
 
     /**
      *
-     * @return Getting the animal's animation specific frame
+     * @return Getting the car's animation specific frame
      */
     public TextureRegion getCarTexture() { //before returned texture, now returns textureRegion
-        return carAnimation.getFrame(); //changed this from cat to catAnimation.getFrame() to make it animate
+        return carAnimation.getFrame(); //changed this from car to carAnimation.getFrame() to make it animate
     }
 
     /**
      *
-     * @return Returns the width of the Cat which helps with Collision Detection
+     * @return Returns the width of the Car which helps with Collision Detection
      */
     public int getWidth() {
         return scale;
@@ -131,7 +133,7 @@ public class Car {
 
     /**
      *
-     * @return Returns the height of the Cat which helps with Collision Detection
+     * @return Returns the height of the Car which helps with Collision Detection
      */
     public int getHeight() {
         return scale;
@@ -139,7 +141,7 @@ public class Car {
 
     /**
      *
-     * @param position Sets Cat's position
+     * @param position Sets Car position
      */
     public void setPosition(Vector3 position) {
         this.position = position;
@@ -147,7 +149,7 @@ public class Car {
 
     /**
      *
-     * @param car Returns a Cat Texture
+     * @param car Returns a Car Texture
      */
     public void setCarTexture(Texture car) {
         this.carTexture = car;
@@ -155,7 +157,7 @@ public class Car {
 
     /**
      *
-     * @param position Using position to test Cat's position
+     * @param position Using position to test Car's position
      * with user touch input
      */
     public void teleport(Vector3 position){
@@ -165,14 +167,7 @@ public class Car {
     }
 
     /**
-     * Determines how fast the car speeds up
-     */
-    public void accelerate(){
-
-    }
-
-    /**
-     * Prevents memory leaks by deleting animal when no longer needed
+     * Prevents memory leaks by deleting the car when no longer needed
      */
     public void dispose(){ carTexture.dispose();}
 
