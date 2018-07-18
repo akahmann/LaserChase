@@ -91,7 +91,7 @@ public class PlayState extends State {
         if(cat.collides(mouse.getBounds())) {
             if (mouse.isAlive()) {
                 mouse.kill();
-                score += 20 * 30;
+                score += 5;
             }
         }
 
@@ -154,12 +154,6 @@ public class PlayState extends State {
                 dog.kill();
             }
         }
-
-
-
-                //String name = prefs.getString("name","no name stored");//Gets the key for the
-        score++;
-        //System.out.println("score ******************" + score / 30);
     }
 
     @Override
@@ -195,7 +189,7 @@ public class PlayState extends State {
         sb.draw(laser.getLaser(), laser.getPosition().x, laser.getPosition().y, (float)(Gdx.graphics.getWidth() * .05), (float)(Gdx.graphics.getWidth() * .05));
         scoreFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         scoreFont.getData().setScale(10, 10);
-        scoreFont.draw(sb,  "" + score/30, 50, 150);
+        scoreFont.draw(sb,  "" + score, 50, 150);
 
         sb.end();
 
