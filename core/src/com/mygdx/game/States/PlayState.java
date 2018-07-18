@@ -38,7 +38,7 @@ public class PlayState extends State {
         laser = new Laser(0, 0);
         car = new Car(-190, Gdx.graphics.getHeight() / 3, false, "spr_carBlueRight_strip5.png");
         car2 = new Car(Gdx.graphics.getWidth(), (int)(Gdx.graphics.getHeight() / 1.5), true, "spr_carBlueLeft_strip5.png");
-
+        bg = new Texture("spr_playStateBackground.png");
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         Gdx.app.setLogLevel(Application.LOG_INFO);
         score = 0;
@@ -166,7 +166,7 @@ public class PlayState extends State {
     public void render(SpriteBatch sb) {
         //sb.setProjectionMatrix();
         sb.begin();
-        //sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
 
         if(cat.isAlive()) {
