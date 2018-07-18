@@ -115,10 +115,10 @@ public class PlayState extends State {
 
         if(dog.isAlive() == false){
             Random rand = new Random();
-            int spawnChance = rand.nextInt(150) + 1;
+            int spawnChance = rand.nextInt(300) + 1;
             if(spawnChance == 10) {
                 int coinFlip = rand.nextInt(2) + 1;
-                int randomNum1 = rand.nextInt(1000) + 800;
+                int randomNum1 = 1000;
                 int randomNum2 = rand.nextInt(1000) + 1;
                 if(coinFlip == 1){
                     randomNum1 *= -1;
