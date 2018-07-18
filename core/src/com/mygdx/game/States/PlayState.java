@@ -17,6 +17,11 @@ import com.mygdx.game.sprites.Mouse;
 import java.util.Random;
 
 import javax.xml.soap.Text;
+
+/**
+ * Play State is in charge of how the game runs when playing
+ */
+
 public class PlayState extends State {
 
     private Animal cat;
@@ -29,6 +34,11 @@ public class PlayState extends State {
     private int score;
     BitmapFont scoreFont;
 
+    /**
+     * Setting Constructors and variables to initial values
+     * @param gsm
+     */
+
     public PlayState(GameStateManager gsm) {
 
         super(gsm);
@@ -38,6 +48,7 @@ public class PlayState extends State {
         laser = new Laser(0, 0);
         car = new Car(-190, Gdx.graphics.getHeight() / 3, false, "spr_carBlueRight_strip5.png");
         car2 = new Car(Gdx.graphics.getWidth(), (int)(Gdx.graphics.getHeight() / 1.5), true, "spr_carBlueLeft_strip5.png");
+        bg = new Texture("spr_playStateBackground.png"); //be here!
         cam.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
         Gdx.app.setLogLevel(Application.LOG_INFO);
         score = 0;
@@ -45,6 +56,10 @@ public class PlayState extends State {
         prefs.putInteger("score", 0);
         prefs.flush();
     }
+
+    /**
+     * Handles Touch Input From User and Sets Laser Position to that point
+     */
 
     @Override
     protected void handleInput() {
@@ -56,6 +71,11 @@ public class PlayState extends State {
         }
 
     }
+
+    /**
+     * Update method is used to determine where objects are at any given time
+     * @param dt
+     */
 
     @Override
     public void update(float dt) {
@@ -82,7 +102,6 @@ public class PlayState extends State {
         if(dog.collides(cat.getBounds()) && dog.isAlive()){
             cat.kill();
             prefs.putInteger("score", score);//Insert data into Preferences
-            //System.out.println("score LAST" + score / 30);
 
             prefs.flush();
         }
@@ -155,11 +174,16 @@ public class PlayState extends State {
         }
     }
 
+    /**
+     * Draws Sprites of Objects depending
+     * @param sb
+     */
+
     @Override
     public void render(SpriteBatch sb) {
-        //sb.setProjectionMatrix();
         sb.begin();
-        //sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        sb.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.gl.glClearColor(.0f, .206f, 0f, 1);
 
         if(cat.isAlive()) {
@@ -193,6 +217,10 @@ public class PlayState extends State {
         sb.end();
 
     }
+
+    /**
+     * Disposes of Objects to prevent Memory leaks
+     */
 
     @Override
     public void dispose() {
