@@ -26,7 +26,7 @@ public class MenuState extends State {
         super(gsm);
         //resetScores();
         background = new Texture("spr_menuScreen_strip11.png");
-        //animalTexture = new Texture("spr_catRight_strip11.png"); //put animation in texture
+        //animalTexture = new Texture("spr_catRight_strip11.png");
         backgroundAnimation = new Animation(new TextureRegion(background), 11, 0.5f);
         playBtn = new Texture("PlayBtn.png");
         btnBounds = new Rectangle(Gdx.graphics.getWidth() / 2 - (playBtn.getWidth() / 2), Gdx.graphics.getHeight() / 8, 600, 260);
